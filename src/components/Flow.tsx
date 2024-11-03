@@ -46,7 +46,7 @@ const HamburgerSlidePopup = () => {
         },
     ]);
 
-    const [dueDate, setDueDate] = useState(""); // State for due date
+    const [dueDate, setDueDate] = useState(""); 
     const togglePopup = () => setIsOpen(!isOpen);
     const handleAddTaskClick = () => setShowAddTaskDetails(!showAddTaskDetails);
 
