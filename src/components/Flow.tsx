@@ -10,6 +10,7 @@ const HamburgerSlidePopup = () => {
     const [isOpen, setIsOpen] = useState(true);
     const [showAddTaskDetails, setShowAddTaskDetails] = useState(false);
     const [selectedPriority, setSelectedPriority] = useState("");
+    const [selectedTaskType, setSelectedTaskType] = useState("");
     const [tasks, setTasks] = useState([
         {
             task: "Task Hospital A , bed no 4 patient- monitor the GCS  and SOS intuabtion1",
@@ -65,6 +66,10 @@ const HamburgerSlidePopup = () => {
 
     const handlePrioritySelect = (priority: React.SetStateAction<string>) => {
         setSelectedPriority(priority);
+    };
+
+    const handleTaskTypeSelect = (taskType: React.SetStateAction<string>) => {
+        setSelectedTaskType(taskType);
     };
 
     return (
@@ -128,8 +133,12 @@ const HamburgerSlidePopup = () => {
                                 {/* Task Type Section with Separate Borders */}
                                 <div className="flex items-center pl-6 mt-2 gap-2">
                                     <strong className="mr-2">Task Type:</strong>
-                                    {["Follow Up", "Admission", "Rounds", "Others"].map(type => (
-                                        <span key={type} className="text-gray-600 text-[14px] border border-gray-400 px-2 py-0.5 rounded-sm">{type}</span>
+                                    {["Follow Up", "Admission", "Rounds", "Others"].map(taskType => (
+                                        <span
+                                            key={taskType}
+                                            onClick={() => handleTaskTypeSelect(taskType)}
+                                            className={`text-gray-600 text-[14px] font-medium border border-gray-400 px-2 py-0.5 rounded-sm cursor-pointer 
+                                            ${selectedTaskType === taskType ? "bg-[#E5F2F2] text-[#34A2B1] border border-[#34A2B1]" : ""}`}>{taskType}</span>
                                     ))}
                                 </div>
                                 {/* Assigned To and Due Date */}
