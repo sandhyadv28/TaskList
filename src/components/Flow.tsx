@@ -9,6 +9,7 @@ import RadioIcon from "../assets/radio.svg";
 const HamburgerSlidePopup = () => {
     const [isOpen, setIsOpen] = useState(true);
     const [showAddTaskDetails, setShowAddTaskDetails] = useState(false);
+    const [selectedPriority, setSelectedPriority] = useState("");
     const [tasks, setTasks] = useState([
         {
             task: "Task Hospital A , bed no 4 patient- monitor the GCS  and SOS intuabtion1",
@@ -62,6 +63,10 @@ const HamburgerSlidePopup = () => {
         setTasks(updatedTasks);
     };
 
+    const handlePrioritySelect = (priority: React.SetStateAction<string>) => {
+        setSelectedPriority(priority);
+    };
+
     return (
         <div className="relative">
             {/* Hamburger Icon */}
@@ -107,8 +112,18 @@ const HamburgerSlidePopup = () => {
                                 {/* Priority Section */}
                                 <div className="flex items-center pl-6">
                                     <strong className="mr-6">Priority:</strong>
-                                    <span className="px-1 text-[10px] text-red-500 border border-red-500 mr-2">High</span>
-                                    <span className="px-1 text-[10px] text-yellow-400 border border-yellow-400">Low</span>
+                                    <span
+                                        onClick={() => handlePrioritySelect("High")}
+                                        className={`px-1 text-[10px] border mr-2 cursor-pointer ${selectedPriority === "High" ? "bg-red-500 text-white" : "text-red-500 border-red-500"}`}
+                                    >
+                                        High
+                                    </span>
+                                    <span
+                                        onClick={() => handlePrioritySelect("Low")}
+                                        className={`px-1 text-[10px] border cursor-pointer ${selectedPriority === "Low" ? "bg-yellow-400 text-white" : "text-yellow-400 border-yellow-400"}`}
+                                    >
+                                        Low
+                                    </span>
                                 </div>
                                 {/* Task Type Section with Separate Borders */}
                                 <div className="flex items-center pl-6 mt-2 gap-2">
@@ -135,11 +150,11 @@ const HamburgerSlidePopup = () => {
                         <div className=' bg-[#F6F7F9]'>
                             {tasks.map((task, index) => (
                                 <div key={index} className="p-1 flex items-start">
-                                    <img 
-                                        src={task.status === "Completed" ? VerifiedIcon : RadioIcon} 
-                                        alt="Radio Icon" 
-                                        className="cursor-pointer mr-3" 
-                                        onClick={() => handleRadioClick(index)} 
+                                    <img
+                                        src={task.status === "Completed" ? VerifiedIcon : RadioIcon}
+                                        alt="Radio Icon"
+                                        className="cursor-pointer mr-3"
+                                        onClick={() => handleRadioClick(index)}
                                     />
                                     <div className="flex-grow">
                                         <div className="flex justify-between items-center mb-2">
@@ -150,8 +165,8 @@ const HamburgerSlidePopup = () => {
                                             <p className='border border-[#CDD7EB] px-2 py-1'>{task.patient}</p>
                                             <p className='border border-[#CDD7EB] px-2 py-1'>{task.taskType}</p>
                                             <p className={`px-2 py-1 
-                                                ${task.status === 'Pending' ? 'text-red-500 bg-yellow-200' : 
-                                                  task.status === 'Completed' ? 'text-green-500 bg-green-200' : ''}`}>
+                                                ${task.status === 'Pending' ? 'text-red-500 bg-yellow-200' :
+                                                    task.status === 'Completed' ? 'text-green-500 bg-green-200' : ''}`}>
                                                 {task.status}
                                             </p>
                                         </div>
