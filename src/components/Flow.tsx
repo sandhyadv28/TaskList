@@ -119,13 +119,13 @@ const HamburgerSlidePopup = () => {
                                     <strong className="mr-6">Priority:</strong>
                                     <span
                                         onClick={() => handlePrioritySelect("High")}
-                                        className={`px-1 text-[10px] border mr-2 cursor-pointer ${selectedPriority === "High" ? "bg-red-500 text-white" : "text-red-500 border-red-500"}`}
+                                        className={`px-1 text-[10px] border mr-2 cursor-pointer rounded-sm ${selectedPriority === "High" ? "bg-red-500 text-white" : "text-red-500 border-red-500"}`}
                                     >
                                         High
                                     </span>
                                     <span
                                         onClick={() => handlePrioritySelect("Low")}
-                                        className={`px-1 text-[10px] border cursor-pointer ${selectedPriority === "Low" ? "bg-yellow-400 text-white" : "text-yellow-400 border-yellow-400"}`}
+                                        className={`px-1 text-[10px] border cursor-pointer rounded-sm ${selectedPriority === "Low" ? "bg-yellow-400 text-white" : "text-yellow-400 border-yellow-400"}`}
                                     >
                                         Low
                                     </span>
