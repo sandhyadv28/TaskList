@@ -18,17 +18,25 @@ const AddTaskTable = () => {
         setSelectedTaskType(taskType);
     };
 
+    const handleCloseModal = () => setShowAddTaskDetails(false);
+
     return (
         <div>
-            <div className='flex items-center cursor-pointer bg-[#F6F7F9]' onClick={handleAddTaskClick}>
+            <div className='flex items-center cursor-pointer' onClick={handleAddTaskClick}>
                 <img src={NewTaskIcon} alt="NewTaskIcon" className="cursor-pointer" />
                 <p className="text-gray-600 font-medium p-3">Add task</p>
             </div>
 
             {showAddTaskDetails && (
-                <div className='h-[11.5rem] w-[27rem] bg-white shadow-md p-4'>
+                <div className='relative h-[11.5rem] w-[27rem] bg-white shadow-md p-4'>
+                    <div 
+                        className="absolute top-[1.2rem] right-[1.5rem] cursor-pointer"
+                        onClick={handleCloseModal}
+                    >
+                        <img src={CloseIcon} className='w-5 h-5' alt="CloseIcon" />
+                    </div>
 
-                    <div className="mb-4 bg-white">
+                    <div className="mb-4">
                         <h3 className="text-[16px] mb-8 text-[#8B94B3] font-medium">Add Task Details</h3>
                         {/* Priority Section */}
                         <div className="flex items-center">
