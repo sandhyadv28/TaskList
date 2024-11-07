@@ -233,14 +233,14 @@ const ReusableTable: React.FC<TableProps> = ({
 
   return (
     <div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-transparent text-left text-[#465065] text-[12px] border-t">
+      <div className="tw-overflow-x-auto">
+        <table className="tw-min-w-full tw-divide-y tw-divide-gray-200">
+          <thead className="tw-bg-transparent tw-text-left tw-text-[#465065] tw-text-[12px] tw-border-t">
             <tr>
               {columns.map((column) => (
                 <th
                   key={column}
-                  className="px-6 py-3 text-left text-xs font-medium cursor-pointer border-r border-[#CDD7EB]"
+                  className="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-cursor-pointer tw-border-r tw-border-[#CDD7EB]"
                   onClick={() => handleSort(column)}
                 >
                   {column}
@@ -248,22 +248,22 @@ const ReusableTable: React.FC<TableProps> = ({
                     <img
                       src={ArrowUpwardIcon}
                       alt="Sort"
-                      className="inline-block ml-2 w-4 h-4"
+                      className="tw-inline-block tw-ml-2 tw-w-4 tw-h-4"
                     />
                   )}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="bg-transparent text-[14px] text-[#4B505E]">
+          <tbody className="tw-bg-transparent tw-text-[14px] tw-text-[#4B505E]">
             {isAddingTask ? (
               <tr>
-                <td className="border-b border-[#CDD7EB] p-2 w-[2.5rem]">
-                  <img src={NewTaskIcon} alt="New Task" className="w-5 h-5" />
+                <td className="tw-border-b tw-border-[#CDD7EB] tw-p-2 tw-w-[2.5rem]">
+                  <img src={NewTaskIcon} alt="New Task" className="tw-w-5 tw-h-5" />
                 </td>
                 {selectedColumns.map((column) => (
                   <td
-                    className={`border-b p-2 ${column !== "Verified" ? "border-r" : ""}`}
+                    className={`tw-border-b tw-p-2 ${column !== "Verified" ? "tw-border-r" : ""}`}
                     key={column}
                   >
                     <input
@@ -271,27 +271,27 @@ const ReusableTable: React.FC<TableProps> = ({
                       value={newTaskData[column as keyof typeof newTaskData] || ""}
                       onChange={(e) => handleInputChange(e, column)}
                       onKeyDown={handleKeyDown}
-                      className="w-full p-1 border border-[#CDD7EB] rounded outline-none"
+                      className="tw-w-full tw-p-1 tw-border tw-border-[#CDD7EB] tw-rounded tw-outline-none"
                     />
                   </td>
                 ))}
               </tr>
             ) : (
               <tr>
-                <td className="border-b border-[#CDD7EB] p-2">
+                <td className="tw-border-b tw-border-[#CDD7EB] tw-p-2">
                   <img
                     src={NewTaskIcon}
                     alt="New Task"
-                    className="w-5 h-5 cursor-pointer"
+                    className="tw-w-5 tw-h-5 tw-cursor-pointer"
                     onClick={handleAddTask}
                   />
                 </td>
                 <td
                   colSpan={selectedColumns.length}
-                  className="border-b border-[#CDD7EB] p-2"
+                  className="tw-border-b tw-border-[#CDD7EB] tw-p-2"
                 >
                   <button
-                    className="text-[#34A2B1] font-medium cursor-pointer"
+                    className="tw-text-[#34A2B1] tw-font-medium tw-cursor-pointer"
                     onClick={handleAddTask}
                   >
                     Add Task
@@ -304,12 +304,12 @@ const ReusableTable: React.FC<TableProps> = ({
                 {columns.map((column) => (
                   <td
                     key={column}
-                    className="px-6 py-4 whitespace-nowrap border-r border-[#CDD7EB] text-sm border-b"
+                    className="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-border-r tw-border-[#CDD7EB] tw-text-sm tw-border-b"
                   >
                     {column === "Severity" && row[column] === "Unstable" ? (
-                      <img src={UnstableIcon} alt="Unstable" className="w-4 h-4" />
+                      <img src={UnstableIcon} alt="Unstable" className="tw-w-4 tw-h-4" />
                     ) : column === "Verified" && row[column] === "Verified" ? (
-                      <img src={VerifiedIcon} alt="Verified" className="w-4 h-4" />
+                      <img src={VerifiedIcon} alt="Verified" className="tw-w-4 tw-h-4" />
                     ) : (
                       row[column]
                     )}

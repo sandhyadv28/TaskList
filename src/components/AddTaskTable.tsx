@@ -22,56 +22,56 @@ const AddTaskTable = () => {
 
     return (
         <div>
-            <div className='flex items-center cursor-pointer' onClick={handleAddTaskClick}>
-                <img src={NewTaskIcon} alt="NewTaskIcon" className="cursor-pointer" />
-                <p className="text-gray-600 font-medium p-3">Add task</p>
+            <div className='tw-flex tw-items-center tw-cursor-pointer' onClick={handleAddTaskClick}>
+                <img src={NewTaskIcon} alt="NewTaskIcon" className="tw-cursor-pointer" />
+                <p className="tw-text-gray-600 tw-font-medium tw-px-3">Add task</p>
             </div>
 
             {showAddTaskDetails && (
-                <div className='relative h-[11.5rem] w-[27rem] bg-white shadow-md p-4'>
+                <div className='tw-relative tw-h-[11.5rem] tw-w-[27rem] tw-bg-white tw-shadow-md tw-p-4'>
                     <div 
-                        className="absolute top-[1.2rem] right-[1.5rem] cursor-pointer"
+                        className="tw-absolute tw-top-[1.2rem] tw-right-[1.5rem] tw-cursor-pointer"
                         onClick={handleCloseModal}
                     >
-                        <img src={CloseIcon} className='w-5 h-5' alt="CloseIcon" />
+                        <img src={CloseIcon} className='tw-w-5 tw-h-5' alt="CloseIcon" />
                     </div>
 
-                    <div className="mb-4">
-                        <h3 className="text-[16px] mb-8 text-[#8B94B3] font-medium">Add Task Details</h3>
+                    <div className="tw-mb-4">
+                        <h3 className="tw-text-[16px] tw-mb-8 tw-text-[#8B94B3] tw-font-medium">Add Task Details</h3>
                         {/* Priority Section */}
-                        <div className="flex items-center">
-                            <strong className="mr-2 text-[14px] font-medium">Priority:</strong>
+                        <div className="tw-flex tw-items-center">
+                            <strong className="tw-mr-2 tw-text-[14px] tw-font-medium">Priority:</strong>
                             <span
                                 onClick={() => handlePrioritySelect("High")}
-                                className={`px-1 text-[10px] border mr-2 cursor-pointer rounded-sm ${selectedPriority === "High" ? "bg-red-500 text-white" : "text-red-500 border-red-500"}`}
+                                className={`tw-px-1 tw-text-[10px] tw-border tw-mr-2 tw-cursor-pointer tw-rounded-sm ${selectedPriority === "High" ? "tw-bg-red-500 tw-text-white" : "tw-text-red-500 tw-border-red-500"}`}
                             >
                                 High
                             </span>
                             <span
                                 onClick={() => handlePrioritySelect("Low")}
-                                className={`px-1 text-[10px] border cursor-pointer rounded-sm ${selectedPriority === "Low" ? "bg-yellow-400 text-white" : "text-yellow-400 border-yellow-400"}`}
+                                className={`tw-px-1 tw-text-[10px] tw-border tw-cursor-pointer tw-rounded-sm ${selectedPriority === "Low" ? "tw-bg-yellow-400 tw-text-white" : "tw-text-yellow-400 tw-border-yellow-400"}`}
                             >
                                 Low
                             </span>
                         </div>
                         {/* Task Type Section with Separate Borders */}
-                        <div className="flex items-center mt-2 gap-2">
-                            <strong className="text-[14px] font-medium">Task Type:</strong>
+                        <div className="tw-flex tw-items-center tw-mt-2 tw-gap-2">
+                            <strong className="tw-text-[14px] tw-font-medium">Task Type:</strong>
                             {["Follow Up", "Admission", "Rounds", "Others"].map(taskType => (
                                 <span
                                     key={taskType}
                                     onClick={() => handleTaskTypeSelect(taskType)}
-                                    className={`text-gray-600 text-[14px] font-medium border border-gray-400 px-2 py-0.5 rounded-sm cursor-pointer 
-                                ${selectedTaskType === taskType ? "bg-[#E5F2F2] text-[#34A2B1] border border-[#34A2B1]" : ""}`}
+                                    className={`tw-text-gray-600 tw-text-[14px] tw-font-medium tw-border tw-border-gray-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
+                                ${selectedTaskType === taskType ? "tw-bg-[#E5F2F2] tw-text-[#34A2B1] tw-border tw-border-[#34A2B1]" : ""}`}
                                 >
                                     {taskType}
                                 </span>
                             ))}
                         </div>
-                        <div className="mt-2">
-                            <p className="text-[14px] flex items-center gap-1">
-                                <strong className="mr-2 font-medium">Assignee:</strong>
-                                <img src={PersonIcon} alt="PersonIcon" className="cursor-pointer" />
+                        <div className="tw-mt-2">
+                            <p className="tw-text-[14px] tw-flex tw-items-center tw-gap-1">
+                                <strong className="tw-mr-2 tw-font-medium">Assignee:</strong>
+                                <img src={PersonIcon} alt="PersonIcon" className="tw-cursor-pointer" />
                                 Anish
                             </p>
                         </div>

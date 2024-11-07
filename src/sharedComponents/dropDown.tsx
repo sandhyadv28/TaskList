@@ -1,5 +1,5 @@
 import React from "react";
-import DropDownIcon from "../assets/dropdown.svg"; // Ensure the icon path is correct
+import DropDownIcon from "../assets/dropdown.svg"; 
 
 interface DropdownProps {
   options: string[];
@@ -7,11 +7,11 @@ interface DropdownProps {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-  const Dropdown: React.FC<DropdownProps> = ({ options, selectedValue, onChange }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, selectedValue, onChange }) => {
   return (
-    <div className="relative">
+    <div className="tw-relative">
       <select
-        className="p-1 pr-8 border border-[#CDD7EB] rounded outline-none bg-transparent appearance-none"
+        className="tw-p-1 tw-pr-8 tw-border tw-border-[#CDD7EB] tw-rounded tw-outline-none tw-bg-transparent tw-appearance-none"
         onChange={onChange}
         value={selectedValue}
       >
@@ -25,7 +25,7 @@ interface DropdownProps {
       <img
         src={DropDownIcon}
         alt="Dropdown Icon"
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"
+        className="tw-absolute tw-right-2 tw-top-1/2 tw-transform tw--translate-y-1/2 tw-pointer-events-none"
       />
     </div>
   );

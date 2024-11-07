@@ -13,7 +13,7 @@ const HamburgerSlidePopup = () => {
     const [selectedTaskType, setSelectedTaskType] = useState("");
     const [tasks, setTasks] = useState([
         {
-            task: "Task Hospital A , bed no 4 patient- monitor the GCS  and SOS intuabtion1",
+            task: "Task Hospital A , bed no 4 patient- monitor the GCS and SOS intuabtion1",
             priority: "High",
             patient: "Alfredo Bergson",
             taskType: "Follow Up",
@@ -21,7 +21,7 @@ const HamburgerSlidePopup = () => {
             date: "12 June, 13:30",
         },
         {
-            task: "Task Hospital A , bed no 4 patient- monitor the GCS  and SOS intuabtion1",
+            task: "Task Hospital A , bed no 4 patient- monitor the GCS and SOS intuabtion1",
             priority: "High",
             patient: "Alfredo Bergson",
             taskType: "Follow Up",
@@ -29,7 +29,7 @@ const HamburgerSlidePopup = () => {
             date: "12 June, 13:30",
         },
         {
-            task: "Task Hospital A , bed no 4 patient- monitor the GCS  and SOS intuabtion1",
+            task: "Task Hospital A , bed no 4 patient- monitor the GCS and SOS intuabtion1",
             priority: "High",
             patient: "Alfredo Bergson",
             taskType: "Follow Up",
@@ -37,7 +37,7 @@ const HamburgerSlidePopup = () => {
             date: "12 June, 13:30",
         },
         {
-            task: "Task Hospital A , bed no 4 patient- monitor the GCS  and SOS intuabtion1",
+            task: "Task Hospital A , bed no 4 patient- monitor the GCS and SOS intuabtion1",
             priority: "High",
             patient: "Alfredo Bergson",
             taskType: "Follow Up",
@@ -46,7 +46,7 @@ const HamburgerSlidePopup = () => {
         },
     ]);
 
-    const [dueDate, setDueDate] = useState(""); 
+    const [dueDate, setDueDate] = useState("");
     const togglePopup = () => setIsOpen(!isOpen);
     const handleAddTaskClick = () => setShowAddTaskDetails(!showAddTaskDetails);
 
@@ -73,114 +73,109 @@ const HamburgerSlidePopup = () => {
     };
 
     return (
-        <div className="relative">
+        <div className="tw-relative">
             {/* Hamburger Icon */}
             {!isOpen && (
-                <button onClick={togglePopup} className="fixed top-4 right-4 z-50 p-2 text-white bg-gray-800 rounded-md">
+                <button onClick={togglePopup} className="tw-fixed tw-top-4 tw-right-4 tw-z-50 tw-p-2 tw-text-white tw-bg-gray-800 tw-rounded-md">
                     <span className="material-icons">menu</span>
                 </button>
             )}
 
             {/* Slide-in Popup */}
-            <div className={`fixed top-0 right-0 h-[928px] w-[656px] bg-white shadow-lg transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex`}>
+            <div className={`tw-fixed tw-top-0 tw-right-0 tw-h-[928px] tw-w-[656px] tw-bg-white tw-shadow-lg tw-transform tw-transition-transform tw-duration-300 ${isOpen ? 'tw-translate-x-0' : 'tw-translate-x-full'} tw-flex`}>
                 {/* Slide SVG on the Left Side */}
-                <div className="h-[85%] bg-gray-100 flex items-center">
-                    <img src={SlideIcon} alt="Slide Decoration" className="w-2 h-30 cursor-pointer" onClick={togglePopup} />
+                <div className="tw-h-[85%] tw-bg-gray-100 tw-flex tw-items-center">
+                    <img src={SlideIcon} alt="Slide Decoration" className="tw-w-2 tw-h-30 tw-cursor-pointer" onClick={togglePopup} />
                 </div>
 
                 {/* Content Area */}
-                <div className="flex-grow relative">
+                <div className="tw-flex-grow tw-relative">
                     {/* Centered Name */}
-                    <div className="bg-[#EEEFF4] py-4 px-6 flex items-center justify-center relative">
-                        <h2 className="text-md font-normal mx-auto">Arun Kumar 55 M</h2>
-                        <img src={CollapseIcon} alt="Collapse Icon" className="absolute right-4 w-6 h-6 cursor-pointer" onClick={togglePopup} />
+                    <div className="tw-bg-[#EEEFF4] tw-py-4 tw-px-6 tw-flex tw-items-center tw-justify-center tw-relative">
+                        <h2 className="tw-text-md tw-font-normal tw-mx-auto">Arun Kumar 55 M</h2>
+                        <img src={CollapseIcon} alt="Collapse Icon" className="tw-absolute tw-right-4 tw-w-6 tw-h-6 tw-cursor-pointer" onClick={togglePopup} />
                     </div>
 
-                    <div className='px-4 bg-[#F6F7F9]'>
-                        <p className="text-gray-600 my-2">TASKS</p>
-                        <div className='flex mb-2'>
-                            <p className="text-gray-600 font-medium pl-2">All tasks</p>
-                            <img src={DownArrow} alt="DownArrow Icon" className="cursor-pointer" />
+                    <div className='tw-px-4 tw-bg-[#F6F7F9]'>
+                        <p className="tw-text-gray-600 tw-my-2">TASKS</p>
+                        <div className='tw-flex tw-mb-2'>
+                            <p className="tw-text-gray-600 tw-font-medium tw-pl-2">All tasks</p>
+                            <img src={DownArrow} alt="DownArrow Icon" className="tw-cursor-pointer" />
                         </div>
                         <hr />
 
                         {/* Add Task Button */}
-                        <div className='flex items-center cursor-pointer bg-[#F6F7F9]' onClick={handleAddTaskClick}>
-                            <img src={NewTaskIcon} alt="NewTaskIcon" className="cursor-pointer" />
-                            <p className="text-gray-600 font-medium p-3">Add task</p>
+                        <div className='tw-flex tw-items-center tw-cursor-pointer tw-bg-[#F6F7F9]' onClick={handleAddTaskClick}>
+                            <img src={NewTaskIcon} alt="NewTaskIcon" className="tw-cursor-pointer" />
+                            <p className="tw-text-gray-600 tw-font-medium tw-p-3">Add task</p>
                         </div>
 
                         {/* Show Add Task Details */}
                         {showAddTaskDetails && (
-                            <div className="mb-4 bg-white">
-                                <h3 className="font-normal mb-2">Add Task Details</h3>
+                            <div className="tw-mb-4 tw-bg-white">
+                                <h3 className="tw-font-normal tw-mb-2">Add Task Details</h3>
                                 {/* Priority Section */}
-                                <div className="flex items-center pl-6">
-                                    <strong className="mr-6">Priority:</strong>
+                                <div className="tw-flex tw-items-center tw-pl-6">
+                                    <strong className="tw-mr-6">Priority:</strong>
                                     <span
                                         onClick={() => handlePrioritySelect("High")}
-                                        className={`px-1 text-[10px] border mr-2 cursor-pointer rounded-sm ${selectedPriority === "High" ? "bg-red-500 text-white" : "text-red-500 border-red-500"}`}
+                                        className={`tw-px-1 tw-text-[10px] tw-border tw-mr-2 tw-cursor-pointer tw-rounded-sm ${selectedPriority === "High" ? "tw-bg-red-500 tw-text-white" : "tw-text-red-500 tw-border-red-500"}`}
                                     >
                                         High
                                     </span>
                                     <span
                                         onClick={() => handlePrioritySelect("Low")}
-                                        className={`px-1 text-[10px] border cursor-pointer rounded-sm ${selectedPriority === "Low" ? "bg-yellow-400 text-white" : "text-yellow-400 border-yellow-400"}`}
+                                        className={`tw-px-1 tw-text-[10px] tw-border tw-cursor-pointer tw-rounded-sm ${selectedPriority === "Low" ? "tw-bg-yellow-400 tw-text-white" : "tw-text-yellow-400 tw-border-yellow-400"}`}
                                     >
                                         Low
                                     </span>
                                 </div>
                                 {/* Task Type Section with Separate Borders */}
-                                <div className="flex items-center pl-6 mt-2 gap-2">
-                                    <strong className="mr-2">Task Type:</strong>
+                                <div className="tw-flex tw-items-center tw-pl-6 tw-mt-2 tw-gap-2">
+                                    <strong className="tw-mr-2">Task Type:</strong>
                                     {["Follow Up", "Admission", "Rounds", "Others"].map(taskType => (
                                         <span
                                             key={taskType}
                                             onClick={() => handleTaskTypeSelect(taskType)}
-                                            className={`text-gray-600 text-[14px] font-medium border border-gray-400 px-2 py-0.5 rounded-sm cursor-pointer 
-                                            ${selectedTaskType === taskType ? "bg-[#E5F2F2] text-[#34A2B1] border border-[#34A2B1]" : ""}`}>{taskType}</span>
+                                            className={`tw-text-gray-600 tw-text-[14px] tw-font-medium tw-border tw-border-gray-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
+                                            ${selectedTaskType === taskType ? "tw-bg-[#E5F2F2] tw-text-[#34A2B1] tw-border tw-border-[#34A2B1]" : ""}`}>{taskType}</span>
                                     ))}
                                 </div>
                                 {/* Assigned To and Due Date */}
-                                <p className="text-gray-600 pl-6"><strong>Assigned to:</strong> Anish</p>
-                                <p className="text-gray-600 pl-6">
+                                <p className="tw-text-gray-600 tw-pl-6"><strong>Assigned to:</strong> Anish</p>
+                                <p className="tw-text-gray-600 tw-pl-6">
                                     <strong>Due Date:</strong>
                                     <input
                                         type="date"
                                         value={dueDate}
                                         onChange={(e) => setDueDate(e.target.value)}
-                                        className="ml-2 border border-gray-400 px-2 py-1 rounded"
+                                        className="tw-ml-2 tw-border tw-border-gray-400 tw-px-2 tw-py-1 tw-rounded"
                                     />
                                 </p>
                             </div>
                         )}
 
                         {/* Task Card */}
-                        <div className=' bg-[#F6F7F9]'>
+                        <div className=' tw-bg-[#F6F7F9]'>
                             {tasks.map((task, index) => (
-                                <div key={index} className="p-1 flex items-start">
+                                <div key={index} className="tw-p-1 tw-flex tw-items-start">
                                     <img
                                         src={task.status === "Completed" ? VerifiedIcon : RadioIcon}
                                         alt="Radio Icon"
-                                        className="cursor-pointer mr-3"
+                                        className="tw-cursor-pointer tw-mr-3"
                                         onClick={() => handleRadioClick(index)}
                                     />
-                                    <div className="flex-grow">
-                                        <div className="flex justify-between items-center mb-2">
-                                            <p className="text-[16px] text-gray-800">{task.task}</p>
+                                    <div className="tw-flex-grow">
+                                        <div className="tw-flex tw-justify-between tw-items-center tw-mb-2">
+                                            <p className="tw-text-[16px] tw-text-gray-800">{task.task}</p>
                                         </div>
-                                        <div className="text-xs flex gap-3 text-gray-600 mb-2">
-                                            <p className="text-red-500 font-bold border border-[#CDD7EB] px-2 py-1">{task.priority}</p>
-                                            <p className='border border-[#CDD7EB] px-2 py-1'>{task.patient}</p>
-                                            <p className='border border-[#CDD7EB] px-2 py-1'>{task.taskType}</p>
-                                            <p className={`px-2 py-1 
-                                                ${task.status === 'Pending' ? 'text-red-500 bg-yellow-200' :
-                                                    task.status === 'Completed' ? 'text-green-500 bg-green-200' : ''}`}>
-                                                {task.status}
-                                            </p>
+                                        <div className="tw-text-xs tw-flex tw-gap-3 tw-text-gray-600 tw-mb-2">
+                                            <p className="tw-text-red-500 tw-font-bold tw-border tw-border-[#CDD7EB] tw-px-2 tw-py-1">{task.priority}</p>
+                                            <p className='tw-border tw-border-[#CDD7EB] tw-px-2 tw-py-1'>{task.patient}</p>
+                                            <p className="tw-border tw-border-[#CDD7EB] tw-px-2 tw-py-1">{task.taskType}</p>
                                         </div>
                                     </div>
-                                    <p className='text-[10px] whitespace-nowrap'>{task.date}</p>
+                                    <p className='tw-text-[10px] tw-whitespace-nowrap'>{task.date}</p>
                                 </div>
                             ))}
                         </div>
