@@ -91,35 +91,35 @@ const HamburgerSlidePopup = () => {
                 {/* Content Area */}
                 <div className="tw-flex-grow tw-relative">
                     {/* Centered Name */}
-                    <div className="tw-bg-[#EEEFF4] tw-py-4 tw-px-6 tw-flex tw-items-center tw-justify-center tw-relative">
-                        <h2 className="tw-text-md tw-font-normal tw-mx-auto">Arun Kumar 55 M</h2>
+                    <div className="tw-bg-fades-200 tw-py-4 tw-px-6 tw-flex tw-items-center tw-justify-center tw-relative">
+                        <h2 className="tw-text-md tw-font-normal tw-mx-auto tw-text-cool-grey-500">Arun Kumar 55 M</h2>
                         <img src={CollapseIcon} alt="Collapse Icon" className="tw-absolute tw-right-4 tw-w-6 tw-h-6 tw-cursor-pointer" onClick={togglePopup} />
                     </div>
 
-                    <div className='tw-px-4 tw-bg-[#F6F7F9]'>
-                        <p className="tw-text-gray-600 tw-my-2">TASKS</p>
+                    <div className='tw-px-4 tw-bg-fades-100'>
+                        <p className="tw-text-fades-600 tw-my-2">TASKS</p>
                         <div className='tw-flex tw-mb-2'>
-                            <p className="tw-text-gray-600 tw-font-medium tw-pl-2">All tasks</p>
+                            <p className="tw-text-fades-600 tw-font-medium tw-pl-2">All tasks</p>
                             <img src={DownArrow} alt="DownArrow Icon" className="tw-cursor-pointer" />
                         </div>
-                        <hr />
+                        <hr className="tw-border-t tw-border-fades-350" />
 
                         {/* Add Task Button */}
-                        <div className='tw-flex tw-items-center tw-cursor-pointer tw-bg-[#F6F7F9]' onClick={handleAddTaskClick}>
+                        <div className='tw-flex tw-items-center tw-cursor-pointer tw-bg-fades-100' onClick={handleAddTaskClick}>
                             <img src={NewTaskIcon} alt="NewTaskIcon" className="tw-cursor-pointer" />
-                            <p className="tw-text-gray-600 tw-font-medium tw-p-3">Add task</p>
+                            <p className="tw-text-fades-600 tw-font-medium tw-p-3">Add task</p>
                         </div>
 
                         {/* Show Add Task Details */}
                         {showAddTaskDetails && (
-                            <div className="tw-mb-4 tw-bg-white">
+                            <div className="tw-mb-4 tw-bg-fades-000">
                                 <h3 className="tw-font-normal tw-mb-2">Add Task Details</h3>
                                 {/* Priority Section */}
                                 <div className="tw-flex tw-items-center tw-pl-6">
                                     <strong className="tw-mr-6">Priority:</strong>
                                     <span
                                         onClick={() => handlePrioritySelect("High")}
-                                        className={`tw-px-1 tw-text-[10px] tw-border tw-mr-2 tw-cursor-pointer tw-rounded-sm ${selectedPriority === "High" ? "tw-bg-red-500 tw-text-white" : "tw-text-red-500 tw-border-red-500"}`}
+                                        className={`tw-px-1 tw-text-[10px] tw-border tw-mr-2 tw-cursor-pointer tw-rounded-sm ${selectedPriority === "High" ? "tw-bg-red-400 tw-text-white" : "tw-text-red-400 tw-border-red-400"}`}
                                     >
                                         High
                                     </span>
@@ -132,31 +132,31 @@ const HamburgerSlidePopup = () => {
                                 </div>
                                 {/* Task Type Section with Separate Borders */}
                                 <div className="tw-flex tw-items-center tw-pl-6 tw-mt-2 tw-gap-2">
-                                    <strong className="tw-mr-2">Task Type:</strong>
+                                    <strong className="tw-mr-2 tw-text-fades-600">Task Type:</strong>
                                     {["Follow Up", "Admission", "Rounds", "Others"].map(taskType => (
                                         <span
                                             key={taskType}
                                             onClick={() => handleTaskTypeSelect(taskType)}
-                                            className={`tw-text-gray-600 tw-text-[14px] tw-font-medium tw-border tw-border-gray-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
+                                            className={`tw-text-fades-600 tw-text-[14px] tw-font-medium tw-border tw-border-gray-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
                                             ${selectedTaskType === taskType ? "tw-bg-[#E5F2F2] tw-text-[#34A2B1] tw-border tw-border-[#34A2B1]" : ""}`}>{taskType}</span>
                                     ))}
                                 </div>
                                 {/* Assigned To and Due Date */}
-                                <p className="tw-text-gray-600 tw-pl-6"><strong>Assigned to:</strong> Anish</p>
-                                <p className="tw-text-gray-600 tw-pl-6">
+                                <p className="tw-text-fades-600 tw-pl-6"><strong>Assigned to:</strong> Anish</p>
+                                <p className="tw-text-fades-600 tw-pl-6">
                                     <strong>Due Date:</strong>
                                     <input
                                         type="date"
                                         value={dueDate}
                                         onChange={(e) => setDueDate(e.target.value)}
-                                        className="tw-ml-2 tw-border tw-border-gray-400 tw-px-2 tw-py-1 tw-rounded"
+                                        className="tw-ml-2 tw-border tw-border-fades-400 tw-px-2 tw-py-1 tw-rounded"
                                     />
                                 </p>
                             </div>
                         )}
 
                         {/* Task Card */}
-                        <div className=' tw-bg-[#F6F7F9]'>
+                        <div className=' tw-bg-fades-100'>
                             {tasks.map((task, index) => (
                                 <div key={index} className="tw-p-1 tw-flex tw-items-start">
                                     <img
@@ -170,9 +170,9 @@ const HamburgerSlidePopup = () => {
                                             <p className="tw-text-[16px] tw-text-gray-800">{task.task}</p>
                                         </div>
                                         <div className="tw-text-xs tw-flex tw-gap-3 tw-text-gray-600 tw-mb-2">
-                                            <p className="tw-text-red-500 tw-font-bold tw-border tw-border-[#CDD7EB] tw-px-2 tw-py-1">{task.priority}</p>
-                                            <p className='tw-border tw-border-[#CDD7EB] tw-px-2 tw-py-1'>{task.patient}</p>
-                                            <p className="tw-border tw-border-[#CDD7EB] tw-px-2 tw-py-1">{task.taskType}</p>
+                                            <p className="tw-text-red-400 tw-font-bold tw-border tw-border-fades-400  tw-px-2 tw-py-1 tw-rounded-sm">{task.priority}</p>
+                                            <p className='tw-border tw-border-fades-400  tw-px-2 tw-py-1 tw-rounded-sm'>{task.patient}</p>
+                                            <p className="tw-border tw-border-fades-400 tw-px-2 tw-py-1 tw-rounded-sm">{task.taskType}</p>
                                         </div>
                                     </div>
                                     <p className='tw-text-[10px] tw-whitespace-nowrap'>{task.date}</p>
