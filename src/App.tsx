@@ -6,9 +6,9 @@ import AddTaskTable from './components/AddTaskTable'
 const App = () => {
   return (
    <div>
-    <Table/>
+    {/* <Table/> */}
     {/* <Flow/> */}
-    {/* <AddTaskTable/> */}
+    <AddTaskTable/>
    </div>
   )
 }

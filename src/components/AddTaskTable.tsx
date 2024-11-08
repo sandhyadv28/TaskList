@@ -24,7 +24,7 @@ const AddTaskTable = () => {
         <div>
             <div className='tw-flex tw-items-center tw-cursor-pointer' onClick={handleAddTaskClick}>
                 <img src={NewTaskIcon} alt="NewTaskIcon" className="tw-cursor-pointer" />
-                <p className="tw-text-gray-600 tw-font-medium tw-px-3">Add task</p>
+                <p className="tw-text-content-400 tw-font-medium tw-px-3">Add task</p>
             </div>
 
             {showAddTaskDetails && (
@@ -37,13 +37,13 @@ const AddTaskTable = () => {
                     </div>
 
                     <div className="tw-mb-4">
-                        <h3 className="tw-text-[16px] tw-mb-8 tw-text-[#8B94B3] tw-font-medium">Add Task Details</h3>
+                        <h3 className="tw-text-[16px] tw-mb-8 tw-text-content-400 tw-font-medium">Add Task Details</h3>
                         {/* Priority Section */}
                         <div className="tw-flex tw-items-center">
                             <strong className="tw-mr-2 tw-text-[14px] tw-font-medium">Priority:</strong>
                             <span
                                 onClick={() => handlePrioritySelect("High")}
-                                className={`tw-px-1 tw-text-[10px] tw-border tw-mr-2 tw-cursor-pointer tw-rounded-sm ${selectedPriority === "High" ? "tw-bg-red-500 tw-text-white" : "tw-text-red-500 tw-border-red-500"}`}
+                                className={`tw-px-1 tw-text-[10px] tw-border tw-mr-2 tw-cursor-pointer tw-rounded-sm ${selectedPriority === "High" ? "tw-bg-red-400 tw-text-white" : "tw-text-red-400 tw-border-red-400"}`}
                             >
                                 High
                             </span>
@@ -61,8 +61,8 @@ const AddTaskTable = () => {
                                 <span
                                     key={taskType}
                                     onClick={() => handleTaskTypeSelect(taskType)}
-                                    className={`tw-text-gray-600 tw-text-[14px] tw-font-medium tw-border tw-border-gray-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
-                                ${selectedTaskType === taskType ? "tw-bg-[#E5F2F2] tw-text-[#34A2B1] tw-border tw-border-[#34A2B1]" : ""}`}
+                                    className={`tw-text-content-400 tw-text-[14px] tw-font-medium tw-border tw-border-fades-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
+                                ${selectedTaskType === taskType ? "tw-bg-primary-100 tw-text-primary-400 tw-border tw-border-primary-400" : ""}`}
                                 >
                                     {taskType}
                                 </span>
