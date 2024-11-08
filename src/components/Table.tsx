@@ -240,7 +240,7 @@ useEffect(() => {
 
     return filteredData.map((item) => (
       <tr key={item.id} className="tw-p-2">
-        <td className="tw-border-b tw-border-[#CDD7EB] tw-p-2">
+        <td className="tw-border-b tw-border-fades-400 tw-p-2">
           <img
             src={item["Verified"] === "Done" ? VerifiedIcon : RadioIcon}
             alt={item["Verified"]}
@@ -249,11 +249,11 @@ useEffect(() => {
         </td>
         {selectedColumns.map((column) => (
           <td
-            className={`tw-border-b tw-border-[#CDD7EB] tw-p-2 ${
+            className={`tw-border-b tw-border-fades-400 tw-p-2 ${
               column !== "Verified" ? "tw-border-r" : ""
             } ${
               column === "Severity" && item[column] === "Unstable"
-                ? "tw-text-[#EB4049]"
+                ? "tw-text-red-400"
                 : ""
             }`}
             key={column}
@@ -273,7 +273,7 @@ useEffect(() => {
   };
 
   const renderColumnHeader = (column: string) => (
-    <th key={column} className="tw-border-b tw-p-2 tw-border-r tw-border-[#CDD7EB]">
+    <th key={column} className="tw-border-b tw-p-2 tw-border-r tw-border-fades-400">
       <p className="tw-flex tw-items-center tw-capitalize tw-text-[12px] tw-font-medium">
         {column}
 
@@ -310,7 +310,7 @@ useEffect(() => {
           <input
             type="text"
             placeholder="Search"
-            className="tw-w-[28rem] tw-p-2 tw-border tw-border-[#CDD7EB] tw-rounded tw-outline-none"
+            className="tw-w-[28rem] tw-p-2 tw-border tw-border-fades-400 tw-rounded tw-outline-none"
           />
         </div>
 
@@ -337,15 +337,15 @@ useEffect(() => {
               <h3 className="tw-text-[1rem] tw-font-medium tw-mb-4 tw-px-4">{groupKey}</h3>
             )}
             <table className="tw-table-auto tw-w-full tw-rounded-[20px] tw-border-collapse">
-              <thead className="tw-bg-transparent tw-h-[50px] tw-text-left tw-text-[#465065] tw-text-[12px] tw-border-t">
+              <thead className="tw-bg-transparent tw-h-[50px] tw-text-left tw-text-content-500 tw-text-[12px] tw-border-t">
                 <tr>
-                  <th className="tw-border-b tw-p-2 tw-border-[#CDD7EB]"></th>
+                  <th className="tw-border-b tw-p-2 tw-border-fades-400"></th>
                   {selectedColumns.map(renderColumnHeader)}
                 </tr>
                 <tr>
                   {isAddingTask ? (
                     <>
-                      <td className="tw-border-b tw-border-[#CDD7EB] tw-p-2 tw-w-[2.5rem]">
+                      <td className="tw-border-b tw-border-fades-400 tw-p-2 tw-w-[2.5rem]">
                         <img
                           src={NewTaskIcon}
                           alt="New Task"
@@ -368,14 +368,14 @@ useEffect(() => {
                               handleInputChange(e, column as keyof NewTaskData)
                             }
                             onKeyDown={handleKeyDown}
-                            className="tw-w-full tw-p-1 tw-border tw-border-[#CDD7EB] tw-rounded tw-outline-none"
+                            className="tw-w-full tw-p-1 tw-border tw-border-fades-400 tw-rounded tw-outline-none"
                           />
                         </td>
                       ))}
                     </>
                   ) : (
                     <>
-                      <td className="tw-border-b tw-border-[#CDD7EB] tw-p-2">
+                      <td className="tw-border-b tw-border-fades-400 tw-p-2">
                         <img
                           src={NewTaskIcon}
                           alt="New Task"
@@ -385,10 +385,10 @@ useEffect(() => {
                       </td>
                       <td
                         colSpan={selectedColumns.length}
-                        className="tw-border-b tw-border-[#CDD7EB] tw-p-2"
+                        className="tw-border-b tw-border-fades-400 tw-p-2"
                       >
                         <button
-                          className="tw-text-[#34A2B1] tw-font-medium tw-cursor-pointer"
+                          className="tw-text-primary-400 tw-font-medium tw-cursor-pointer"
                           onClick={handleAddTask}
                         >
                           Add Task
@@ -399,7 +399,7 @@ useEffect(() => {
                 </tr>
               </thead>
 
-              <tbody className="tw-bg-transparent tw-text-[14px] tw-text-[#4B505E]">
+              <tbody className="tw-bg-transparent tw-text-[14px] tw-text-others-100">
                 {renderRows(sortedAndGroupedData[groupKey])}
               </tbody>
 
@@ -648,7 +648,7 @@ export default Table;
 //           <input
 //             type="text"
 //             placeholder="Search"
-//             className="tw-w-[28rem] tw-p-2 tw-border tw-border-[#CDD7EB] tw-rounded tw-outline-none"
+//             className="tw-w-[28rem] tw-p-2 tw-border tw-border-fades-400 tw-rounded tw-outline-none"
 //           />
 //         </div>
 

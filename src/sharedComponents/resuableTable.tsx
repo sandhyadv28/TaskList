@@ -235,12 +235,12 @@ const ReusableTable: React.FC<TableProps> = ({
     <div>
       <div className="tw-overflow-x-auto">
         <table className="tw-min-w-full tw-divide-y tw-divide-gray-200">
-          <thead className="tw-bg-transparent tw-text-left tw-text-[#465065] tw-text-[12px] tw-border-t">
+          <thead className="tw-bg-transparent tw-text-left tw-text-others-100 tw-text-[12px] tw-border-t">
             <tr>
               {columns.map((column) => (
                 <th
                   key={column}
-                  className="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-cursor-pointer tw-border-r tw-border-[#CDD7EB]"
+                  className="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-cursor-pointer tw-border-r tw-border-fades-400"
                   onClick={() => handleSort(column)}
                 >
                   {column}
@@ -255,10 +255,10 @@ const ReusableTable: React.FC<TableProps> = ({
               ))}
             </tr>
           </thead>
-          <tbody className="tw-bg-transparent tw-text-[14px] tw-text-[#4B505E]">
+          <tbody className="tw-bg-transparent tw-text-[14px] tw-text-others-100">
             {isAddingTask ? (
               <tr>
-                <td className="tw-border-b tw-border-[#CDD7EB] tw-p-2 tw-w-[2.5rem]">
+                <td className="tw-border-b tw-border-fades-400 tw-p-2 tw-w-[2.5rem]">
                   <img src={NewTaskIcon} alt="New Task" className="tw-w-5 tw-h-5" />
                 </td>
                 {selectedColumns.map((column) => (
@@ -271,14 +271,14 @@ const ReusableTable: React.FC<TableProps> = ({
                       value={newTaskData[column as keyof typeof newTaskData] || ""}
                       onChange={(e) => handleInputChange(e, column)}
                       onKeyDown={handleKeyDown}
-                      className="tw-w-full tw-p-1 tw-border tw-border-[#CDD7EB] tw-rounded tw-outline-none"
+                      className="tw-w-full tw-p-1 tw-border tw-border-fades-400 tw-rounded tw-outline-none"
                     />
                   </td>
                 ))}
               </tr>
             ) : (
               <tr>
-                <td className="tw-border-b tw-border-[#CDD7EB] tw-p-2">
+                <td className="tw-border-b tw-border-fades-400 tw-p-2">
                   <img
                     src={NewTaskIcon}
                     alt="New Task"
@@ -288,10 +288,10 @@ const ReusableTable: React.FC<TableProps> = ({
                 </td>
                 <td
                   colSpan={selectedColumns.length}
-                  className="tw-border-b tw-border-[#CDD7EB] tw-p-2"
+                  className="tw-border-b tw-border-fades-400 tw-p-2"
                 >
                   <button
-                    className="tw-text-[#34A2B1] tw-font-medium tw-cursor-pointer"
+                    className="tw-text-primary-400 tw-font-medium tw-cursor-pointer"
                     onClick={handleAddTask}
                   >
                     Add Task
@@ -304,7 +304,7 @@ const ReusableTable: React.FC<TableProps> = ({
                 {columns.map((column) => (
                   <td
                     key={column}
-                    className="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-border-r tw-border-[#CDD7EB] tw-text-sm tw-border-b"
+                    className="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-border-r tw-border-fades-400 tw-text-sm tw-border-b"
                   >
                     {column === "Severity" && row[column] === "Unstable" ? (
                       <img src={UnstableIcon} alt="Unstable" className="tw-w-4 tw-h-4" />
