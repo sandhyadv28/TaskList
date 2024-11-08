@@ -61,8 +61,8 @@ const AddTaskTable = () => {
                                 <span
                                     key={taskType}
                                     onClick={() => handleTaskTypeSelect(taskType)}
-                                    className={`tw-text-content-400 tw-text-[14px] tw-font-medium tw-border tw-border-fades-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
-                                ${selectedTaskType === taskType ? "tw-bg-primary-100 tw-text-primary-400 tw-border tw-border-primary-400" : ""}`}
+                                    className={`tw-text-[14px] tw-font-medium tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
+                                ${selectedTaskType === taskType ? "tw-bg-primary-100 tw-text-primary-400 tw-border tw-border-primary-400" : "tw-text-content-400 tw-border tw-border-fades-400"}`}
                                 >
                                     {taskType}
                                 </span>
