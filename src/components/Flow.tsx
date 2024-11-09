@@ -9,6 +9,7 @@ import RadioIcon from "../assets/radio.svg";
 const HamburgerSlidePopup = () => {
     const [isOpen, setIsOpen] = useState(true);
     const [showAddTaskDetails, setShowAddTaskDetails] = useState(false);
+    const [showTasks, setShowTasks] = useState(true);
     const [selectedPriority, setSelectedPriority] = useState("");
     const [selectedTaskType, setSelectedTaskType] = useState("");
     const [tasks, setTasks] = useState([
@@ -72,6 +73,8 @@ const HamburgerSlidePopup = () => {
         setSelectedTaskType(taskType);
     };
 
+    const toggleTasksVisibility = () => setShowTasks(!showTasks);
+
     return (
         <div className="tw-relative">
             {/* Hamburger Icon */}
@@ -98,7 +101,7 @@ const HamburgerSlidePopup = () => {
 
                     <div className='tw-px-4 tw-bg-fades-100'>
                         <p className="tw-text-fades-600 tw-my-2">TASKS</p>
-                        <div className='tw-flex tw-mb-2'>
+                        <div className='tw-flex tw-mb-2' onClick={toggleTasksVisibility}>
                             <p className="tw-text-fades-600 tw-font-medium tw-pl-2">All tasks</p>
                             <img src={DownArrow} alt="DownArrow Icon" className="tw-cursor-pointer" />
                         </div>
@@ -113,10 +116,10 @@ const HamburgerSlidePopup = () => {
                         {/* Show Add Task Details */}
                         {showAddTaskDetails && (
                             <div className="tw-mb-4 tw-bg-fades-000">
-                                <h3 className="tw-font-normal tw-mb-2">Add Task Details</h3>
+                                <h3 className="tw-font-normal tw-mb-2 tw-text-content-300">Add Task Details</h3>
                                 {/* Priority Section */}
                                 <div className="tw-flex tw-items-center tw-pl-6">
-                                    <strong className="tw-mr-6">Priority:</strong>
+                                    <strong className="tw-mr-6 tw-text-content-600 tw-text-sm">Priority:</strong>
                                     <span
                                         onClick={() => handlePrioritySelect("High")}
                                         className={`tw-px-1 tw-text-[10px] tw-border tw-mr-2 tw-cursor-pointer tw-rounded-sm ${selectedPriority === "High" ? "tw-bg-red-400 tw-text-white" : "tw-text-red-400 tw-border-red-400"}`}
@@ -132,19 +135,19 @@ const HamburgerSlidePopup = () => {
                                 </div>
                                 {/* Task Type Section with Separate Borders */}
                                 <div className="tw-flex tw-items-center tw-pl-6 tw-mt-2 tw-gap-2">
-                                    <strong className="tw-mr-2 tw-text-fades-600">Task Type:</strong>
+                                    <strong className="tw-mr-2 tw-text-content-600 tw-text-sm tw-py-2">Task Type:</strong>
                                     {["Follow Up", "Admission", "Rounds", "Others"].map(taskType => (
                                         <span
                                             key={taskType}
                                             onClick={() => handleTaskTypeSelect(taskType)}
                                             className={`tw-text-fades-600 tw-text-[14px] tw-font-medium tw-border tw-border-gray-400 tw-px-2 tw-py-0.5 tw-rounded-sm tw-cursor-pointer 
-                                            ${selectedTaskType === taskType ? "tw-bg-[#E5F2F2] tw-text-[#34A2B1] tw-border tw-border-[#34A2B1]" : ""}`}>{taskType}</span>
+                                            ${selectedTaskType === taskType ? "tw-bg-primary-100 tw-text-primary-400 tw-border tw-border-primary-400" : ""}`}>{taskType}</span>
                                     ))}
                                 </div>
                                 {/* Assigned To and Due Date */}
-                                <p className="tw-text-fades-600 tw-pl-6"><strong>Assigned to:</strong> Anish</p>
+                                <p className="tw-text-fades-600 tw-pl-6"><strong className='tw-text-sm tw-text-content-600'>Assigned to:</strong> Anish</p>
                                 <p className="tw-text-fades-600 tw-pl-6">
-                                    <strong>Due Date:</strong>
+                                    <strong className='tw-text-sm tw-text-content-600'>Due Date:</strong>
                                     <input
                                         type="date"
                                         value={dueDate}
@@ -156,6 +159,7 @@ const HamburgerSlidePopup = () => {
                         )}
 
                         {/* Task Card */}
+                        {showTasks && (
                         <div className=' tw-bg-fades-100'>
                             {tasks.map((task, index) => (
                                 <div key={index} className="tw-p-1 tw-flex tw-items-start">
@@ -173,12 +177,18 @@ const HamburgerSlidePopup = () => {
                                             <p className="tw-text-red-400 tw-font-bold tw-border tw-border-fades-400  tw-px-2 tw-py-1 tw-rounded-sm">{task.priority}</p>
                                             <p className='tw-border tw-border-fades-400  tw-px-2 tw-py-1 tw-rounded-sm'>{task.patient}</p>
                                             <p className="tw-border tw-border-fades-400 tw-px-2 tw-py-1 tw-rounded-sm">{task.taskType}</p>
+                                            <p className={`tw-px-2 tw-py-1 
+                                                ${task.status === 'Pending' ? 'tw-text-red-400 tw-bg-yellow-200' :
+                                                    task.status === 'Completed' ? 'tw-text-green-500 tw-bg-green-200' : ''}`}>
+                                                {task.status}
+                                            </p>
                                         </div>
                                     </div>
                                     <p className='tw-text-[10px] tw-whitespace-nowrap'>{task.date}</p>
                                 </div>
                             ))}
                         </div>
+                        )}
 
                     </div>
                 </div>
