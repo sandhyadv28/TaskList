@@ -23,7 +23,7 @@ type Task = {
         Severity: 'Unstable',
         'Hospital-unit': 'ICU',
         Date: '2024-08-20',
-        Assignee: 'Nurse David',
+        Assignee: 'Unassigned',
         Creator: 'Dr. Smith',
         Verified: 'Done'
     },
