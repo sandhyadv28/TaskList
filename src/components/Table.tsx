@@ -60,6 +60,8 @@ const Table: React.FC = () => {
   const [isAddingTask, setIsAddingTask] = useState(false);
   const [groupedByTaskType, setGroupedByTaskType] = useState("");
   const [selectedAssignee, setSelectedAssignee] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [editingAssigneeId, setEditingAssigneeId] = useState<number | null>(null);
   const [currentSortColumn, setCurrentSortColumn] = useState<string | null>(
     null
   );
@@ -75,45 +77,52 @@ const Table: React.FC = () => {
     Creator: "",
   });
 
-useEffect(() => {
-  let data: GroupedData | TableRow[] = [];
+  const availableAssignees = Array.from(
+    new Set(sortedData.map((item) => item.Assignee))
+  ).map((assignee) => ({
+    id: assignee,
+    name: assignee,
+  }));
 
-  if (groupedByTaskType) {
-    const grouped = TableData.reduce<GroupedData>((acc, item) => {
-      const key = item[groupedByTaskType as keyof TableRow] || "Unknown";
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      acc[key].push(item);
-      return acc;
-    }, {});
+  useEffect(() => {
+    let data: GroupedData | TableRow[] = [];
 
-    data = grouped;
-  } else {
-    data = { all: TableData };
-  }
-
-  if (isTaskTypeSorted || isPatientNameSorted || isSeveritySorted) {
-    if (Array.isArray(data)) {
-      data = sortData(data);
-    } else {
-      const groupedData = data as GroupedData;
-      data = Object.keys(data).reduce<GroupedData>((acc, key) => {
-        const group = groupedData[key];
-        if (group) {
-          acc[key] = sortData(group);
+    if (groupedByTaskType) {
+      const grouped = TableData.reduce<GroupedData>((acc, item) => {
+        const key = item[groupedByTaskType as keyof TableRow] || "Unknown";
+        if (!acc[key]) {
+          acc[key] = [];
         }
+        acc[key].push(item);
         return acc;
       }, {});
+
+      data = grouped;
+    } else {
+      data = { all: TableData };
     }
-  }
-  setSortedAndGroupedData(data);
-}, [
-  groupedByTaskType,
-  isTaskTypeSorted,
-  isPatientNameSorted,
-  isSeveritySorted,
-]);
+
+    if (isTaskTypeSorted || isPatientNameSorted || isSeveritySorted) {
+      if (Array.isArray(data)) {
+        data = sortData(data);
+      } else {
+        const groupedData = data as GroupedData;
+        data = Object.keys(data).reduce<GroupedData>((acc, key) => {
+          const group = groupedData[key];
+          if (group) {
+            acc[key] = sortData(group);
+          }
+          return acc;
+        }, {});
+      }
+    }
+    setSortedAndGroupedData(data);
+  }, [
+    groupedByTaskType,
+    isTaskTypeSorted,
+    isPatientNameSorted,
+    isSeveritySorted,
+  ]);
 
   const sortData = (data: TableRow[]): TableRow[] => {
     let sorted = [...data];
@@ -234,6 +243,22 @@ useEffect(() => {
     setIsAddingTask(false);
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredAssignees = availableAssignees.filter((assignee) =>
+    assignee.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleAssigneeChange = (e: React.ChangeEvent<HTMLSelectElement>, rowId: number) => {
+    const newAssignee = e.target.value;
+  };
+
+  const handleAssigneeClick = (rowId: number) => {
+    setEditingAssigneeId(rowId);
+  };
+
   const renderRows = (data: TableRow[]): JSX.Element[] => {
     const filteredData = selectedAssignee
       ? data.filter((item) => item["Assignee"] === selectedAssignee)
@@ -248,33 +273,61 @@ useEffect(() => {
             className="tw-w-5 tw-h-5"
           />
         </td>
-      {selectedColumns.map((column) => (
-        <td
+        {selectedColumns.map((column) => (
+          <td
           className={`tw-border-b tw-border-fades-400 tw-p-2 ${
             column !== "Verified" ? "tw-border-r" : ""
           } ${
             column === "Severity" && item[column] === "Unstable"
-              ? "tw-text-red-400"
-              : ""
-          }`}
-          key={column}
-        >
-          {column === "Severity" && item[column] === "Unstable" ? (
-            <div className="tw-flex tw-items-center tw-gap-2">
-              <img src={UnstableIcon} alt="Unstable" className="tw-w-4 tw-h-4" />
-              <p>{item[column]}</p>
-            </div>
-          ) : column === "Assignee" && item[column] === "Unassigned" ? (
-            <div className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200">
-              <img src={PersonIcon} alt="Unassigned" className="tw-w-4 tw-h-4" />
-              <p>{item[column]}</p>
-            </div>
-          ) : (
-            <p>{item[column as keyof TableRow] || ""}</p>
-          )}
-        </td>
-      ))}
-    </tr>
+                ? "tw-text-red-400"
+                : ""
+              }`}
+            key={column}
+          >
+            {column === "Severity" && item[column] === "Unstable" ? (
+              <div className="tw-flex tw-items-center tw-gap-2">
+                <img src={UnstableIcon} alt="Unstable" className="tw-w-4 tw-h-4" />
+                <p>{item[column]}</p>
+              </div>
+            ) : column === "Assignee" && item[column] === "Unassigned" ? (
+              <div className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200">
+                {editingAssigneeId === item.id ? (
+                  <div className="tw-flex tw-flex-col tw-relative">
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={handleSearchChange}
+                      placeholder="Unassigned"
+                      className="tw-px-2 tw-py-1 tw-border tw-border-gray-300 tw-rounded tw-w-[7rem]"
+                    />
+                    <ul className="tw-max-h-32 tw-overflow-y-auto tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-mt-[2rem] tw-absolute">
+                      {filteredAssignees.map((assignee) => (
+                        <li
+                          key={assignee.id}
+                          className="tw-px-2 tw-py-1 hover:tw-bg-gray-100 cursor-pointer"
+                          onClick={() => handleAssigneeChange({ target: { value: assignee.name } } as any, item.id)}
+                        >
+                          {assignee.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div
+                    className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200"
+                    onClick={() => handleAssigneeClick(item.id)}
+                  >
+                    <img src={PersonIcon} alt="Unassigned" className="tw-w-4 tw-h-4" />
+                    <p>{item[column]}</p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p>{item[column as keyof TableRow] || ""}</p>
+            )}
+          </td>
+        ))}
+      </tr>
     ));
   };
 
@@ -362,7 +415,7 @@ useEffect(() => {
                         <td
                           className={`tw-border-b tw-p-2 ${
                             column !== "Verified" ? "tw-border-r" : ""
-                          }`}
+                            }`}
                           key={column}
                         >
                           <input

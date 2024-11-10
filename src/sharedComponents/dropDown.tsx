@@ -5,9 +5,11 @@ interface DropdownProps {
   options: string[];
   selectedValue: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  placeholder?: string; 
+  className?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, selectedValue, onChange }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, selectedValue, onChange, placeholder = "Select an option" }) => {
   return (
     <div className="tw-relative">
       <select
@@ -15,7 +17,11 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedValue, onChange })
         onChange={onChange}
         value={selectedValue}
       >
-        <option value="">None</option>
+        {selectedValue === "" && (
+          <option value="" disabled hidden>
+            {placeholder}
+          </option>
+        )}
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
