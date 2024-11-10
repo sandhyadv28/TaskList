@@ -93,7 +93,8 @@ module.exports = {
         },
 
         others: {
-          '100': '#4B505E'
+          '100': '#4B505E',
+          '200': '#BCC6DB'
         },
 
         'alpha-white': {

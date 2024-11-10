@@ -240,7 +240,7 @@ useEffect(() => {
       : data;
 
     return filteredData.map((item) => (
-      <tr key={item.id} className="tw-p-2">
+      <tr key={item.id} className={`tw-p-2 ${item.Severity === "Unstable" ? "tw-bg-red-100" : "tw-bg-cool-grey-100"}`}>
         <td className="tw-border-b tw-border-fades-400 tw-p-2">
           <img
             src={item["Verified"] === "Done" ? VerifiedIcon : RadioIcon}
@@ -248,33 +248,33 @@ useEffect(() => {
             className="tw-w-5 tw-h-5"
           />
         </td>
-        {selectedColumns.map((column) => (
-          <td
-            className={`tw-border-b tw-border-fades-400 tw-p-2 ${
-              column !== "Verified" ? "tw-border-r" : ""
-            } ${
-              column === "Severity" && item[column] === "Unstable"
-                ? "tw-text-red-400"
-                : ""
-            }`}
-            key={column}
-          >
-            {column === "Severity" && item[column] === "Unstable" ? (
-              <div className="tw-flex tw-items-center tw-gap-2">
-                <img src={UnstableIcon} alt="Unstable" className="tw-w-4 tw-h-4" />
-                <p>{item[column]}</p>
-              </div>
-            ) : column === "Assignee" && item[column] === "Unassigned" ? (
-              <div className="tw-flex tw-items-center tw-gap-2">
-                <img src={PersonIcon} alt="Unassigned" className="tw-w-4 tw-h-4" />
-                <p>{item[column]}</p>
-              </div>
-            ) : (
-              <p>{item[column as keyof TableRow] || ""}</p>
-            )}
-          </td>
-        ))}
-      </tr>
+      {selectedColumns.map((column) => (
+        <td
+          className={`tw-border-b tw-border-fades-400 tw-p-2 ${
+            column !== "Verified" ? "tw-border-r" : ""
+          } ${
+            column === "Severity" && item[column] === "Unstable"
+              ? "tw-text-red-400"
+              : ""
+          }`}
+          key={column}
+        >
+          {column === "Severity" && item[column] === "Unstable" ? (
+            <div className="tw-flex tw-items-center tw-gap-2">
+              <img src={UnstableIcon} alt="Unstable" className="tw-w-4 tw-h-4" />
+              <p>{item[column]}</p>
+            </div>
+          ) : column === "Assignee" && item[column] === "Unassigned" ? (
+            <div className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200">
+              <img src={PersonIcon} alt="Unassigned" className="tw-w-4 tw-h-4" />
+              <p>{item[column]}</p>
+            </div>
+          ) : (
+            <p>{item[column as keyof TableRow] || ""}</p>
+          )}
+        </td>
+      ))}
+    </tr>
     ));
   };
 
