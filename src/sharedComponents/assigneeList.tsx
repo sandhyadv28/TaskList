@@ -20,6 +20,22 @@ const AssigneeList = ({
   const [editingAssigneeId, setEditingAssigneeId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleAssigneeChange = (
+    event: { target: { value: string } },
+    item: any,
+    column: string,
+    id: number
+  ) => {
+    const selectedName = event.target.value;
+    item[column] = selectedName;
+    setEditingAssigneeId(null);
+    console.log(`Selected Name: ${selectedName} for Item ID: ${id}`);
+  };
+
   return (
     <div className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200">
       {editingAssigneeId === item.id ? (
@@ -36,7 +52,7 @@ const AssigneeList = ({
               <li
                 key={assignee.id}
                 className="tw-px-2 tw-py-1 hover:tw-bg-gray-100 cursor-pointer tw-text-fades-700"
-                onClick={() => handleAssigneeChange({ target: { value: assignee.name } }, item.id)}
+                onClick={() => handleAssigneeChange({ target: { value: assignee.name } },item, column,assignee.id)}
               >
                 {assignee.name}
               </li>

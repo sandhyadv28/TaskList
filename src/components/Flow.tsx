@@ -79,7 +79,7 @@ const HamburgerSlidePopup = () => {
         <div className="tw-relative">
             {/* Hamburger Icon */}
             {!isOpen && (
-                <button onClick={togglePopup} className="tw-fixed tw-top-4 tw-right-4 tw-z-50 tw-p-2 tw-text-white tw-bg-fades-100 tw-rounded-md">
+                <button onClick={togglePopup} className="tw-fixed tw-top-4 tw-right-4 tw-z-50 tw-p-2 tw-text-white tw-bg-fades-800 tw-rounded-md">
                     <span className="material-icons">menu</span>
                 </button>
             )}

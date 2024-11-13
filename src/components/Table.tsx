@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { TableData } from "../constants/TableData";
-import UnstableIcon from "../assets/unstable.svg";
-import PersonIcon from "../assets/Person.svg";
-import VerifiedIcon from "../assets/verified.svg";
-import RadioIcon from "../assets/radio.svg";
 import ArrowUpwardIcon from "../assets/arrow_upward.svg";
 import NewTaskIcon from "../assets/newtask.svg";
-import Dropdown from "../sharedComponents/dropDown";
+import RadioIcon from "../assets/radio.svg";
+import UnstableIcon from "../assets/unstable.svg";
+import VerifiedIcon from "../assets/verified.svg";
+import { TableData } from "../constants/TableData";
+import AssigneeList from "../sharedComponents/assigneeList";
 import Avatar from "../sharedComponents/avatar";
+import Dropdown from "../sharedComponents/dropDown";
 
 type TableRow = {
   id: number;
@@ -37,6 +37,11 @@ type NewTaskData = {
 
 interface GroupedData {
   [key: string]: TableRow[];
+}
+
+interface Assignee {
+  id: number;
+  name: string;
 }
 
 const Table: React.FC = () => {
@@ -243,17 +248,14 @@ const Table: React.FC = () => {
     setIsAddingTask(false);
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const filteredAssignees = availableAssignees.filter((assignee) =>
-    assignee.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleAssigneeChange = (e: React.ChangeEvent<HTMLSelectElement>, rowId: number) => {
-    const newAssignee = e.target.value;
-  };
+  const filteredAssignees = availableAssignees
+    .filter((assignee) =>
+      assignee.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .map((assignee) => ({
+      ...assignee,
+      id: Number(assignee.id),
+    }));
 
   const handleAssigneeClick = (rowId: number) => {
     setEditingAssigneeId(rowId);
@@ -290,38 +292,11 @@ const Table: React.FC = () => {
                 <p>{item[column]}</p>
               </div>
             ) : column === "Assignee" && item[column] === "Unassigned" ? (
-              <div className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200">
-                {editingAssigneeId === item.id ? (
-                  <div className="tw-flex tw-flex-col tw-relative">
-                    <input
-                      type="text"
-                      value={searchTerm}
-                      onChange={handleSearchChange}
-                      placeholder="Unassigned"
-                      className="tw-px-2 tw-py-1 tw-border tw-border-gray-300 tw-rounded tw-w-[7rem]"
-                    />
-                    <ul className="tw-max-h-32 tw-overflow-y-auto tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-mt-[2rem] tw-absolute">
-                      {filteredAssignees.map((assignee) => (
-                        <li
-                          key={assignee.id}
-                          className="tw-px-2 tw-py-1 hover:tw-bg-gray-100 cursor-pointer"
-                          onClick={() => handleAssigneeChange({ target: { value: assignee.name } } as any, item.id)}
-                        >
-                          {assignee.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  <div
-                    className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200"
-                    onClick={() => handleAssigneeClick(item.id)}
-                  >
-                    <img src={PersonIcon} alt="Unassigned" className="tw-w-4 tw-h-4" />
-                    <p>{item[column]}</p>
-                  </div>
-                )}
-              </div>
+              <AssigneeList
+                  filteredAssignees={filteredAssignees}
+                  item={item}
+                  column="assignee"
+                  handleAssigneeClick={handleAssigneeClick}/>
             ) : (
               <p>{item[column as keyof TableRow] || ""}</p>
             )}
@@ -395,8 +370,8 @@ const Table: React.FC = () => {
             {groupKey !== "all" && (
               <h3 className="tw-text-[1rem] tw-font-medium tw-mb-4 tw-px-4">{groupKey}</h3>
             )}
-            <table className="tw-table-auto tw-w-full tw-rounded-[20px] tw-border-collapse">
-              <thead className="tw-bg-transparent tw-h-[50px] tw-text-left tw-text-content-500 tw-text-[12px] tw-border-t">
+            <table className="tw-table-auto tw-w-full tw-rounded-[1.25rem] tw-border-collapse">
+              <thead className="tw-bg-transparent tw-h-[3.125rem] tw-text-left tw-text-content-500 tw-text-[0.75rem] tw-border-t">
                 <tr>
                   <th className="tw-border-b tw-p-2 tw-border-fades-400"></th>
                   {selectedColumns.map(renderColumnHeader)}
@@ -458,10 +433,9 @@ const Table: React.FC = () => {
                 </tr>
               </thead>
 
-              <tbody className="tw-bg-transparent tw-text-[14px] tw-text-others-100">
+              <tbody className="tw-bg-transparent tw-text-[0.875rem] tw-text-others-100">
                 {renderRows(sortedAndGroupedData[groupKey])}
               </tbody>
-
             </table>
           </div>
         ))}
