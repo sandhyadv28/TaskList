@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface AvatarProps {
   data: string[]; 
@@ -6,13 +6,38 @@ interface AvatarProps {
 }
 
 const Avatar: React.FC<AvatarProps> = ({ data, onClick }) => {
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleToggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
   return (
     <div className="tw-relative tw-mx-6 tw-flex tw-items-center">
       {data.length > 4 && (
-        <div className="tw-absolute tw-items-center tw-justify-center tw-left-[7.7rem] tw-cursor-pointer">
+        <div
+          onClick={handleToggleDropdown}
+          className="tw-absolute tw-items-center tw-justify-center tw-left-[7.7rem] tw-cursor-pointer"
+        >
           +{data.length - 4}
         </div>
       )}
+
+      {/* Dropdown with remaining names */}
+      {isDropdownVisible && (
+        <div className="tw-absolute tw-top-10 tw-bg-white tw-border tw-border-gray-300 tw-rounded-md tw-shadow-md tw-py-2 tw-px-4 tw-left-[107px] tw-h-[175px] tw-overflow-auto tw-text-[14px] tw-w-max">
+          {data.slice(4).map((name, idx) => (
+            <div
+              key={idx}
+              onClick={() => onClick(name)}
+              className="tw-py-1 tw-cursor-pointer tw-hover:bg-gray-100"
+            >
+              {name}
+            </div>
+          ))}
+        </div>
+      )}
+
       {data.slice(0, 4).reverse().map((item, index) => (
         <div
           key={index}
