@@ -27,13 +27,11 @@ const AssigneeList = ({
   const handleAssigneeChange = (
     event: { target: { value: string } },
     item: any,
-    column: string,
-    id: number
+    column: string
   ) => {
     const selectedName = event.target.value;
     item[column] = selectedName;
     setEditingAssigneeId(null);
-    console.log(`Selected Name: ${selectedName} for Item ID: ${id}`);
   };
 
   return (
@@ -52,7 +50,7 @@ const AssigneeList = ({
               <li
                 key={assignee.id}
                 className="tw-px-2 tw-py-1 hover:tw-bg-gray-100 cursor-pointer tw-text-fades-700"
-                onClick={() => handleAssigneeChange({ target: { value: assignee.name } },item, column,assignee.id)}
+                onClick={() => handleAssigneeChange({ target: { value: assignee.name } },item, column)}
               >
                 {assignee.name}
               </li>
@@ -61,7 +59,9 @@ const AssigneeList = ({
         </div>
       ) : (
         <div
-          className="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-others-200"
+          className={`tw-flex tw-items-center tw-gap-2 tw-cursor-pointer ${
+            item[column] ? "tw-text-others-100" : "tw-text-others-200"
+          }`}
           onClick={() => {
             setEditingAssigneeId(item.id);
             handleAssigneeClick(item.id);
