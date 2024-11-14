@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 interface AvatarProps {
-  data: string[]; 
-  onClick: (item: string) => void; 
+  data: string[];
+  onClick: (item: string) => void;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ data, onClick }) => {
@@ -10,6 +10,11 @@ const Avatar: React.FC<AvatarProps> = ({ data, onClick }) => {
 
   const handleToggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleNameClick = (name: string) => {
+    onClick(name);
+    setDropdownVisible(false); 
   };
 
   return (
@@ -23,13 +28,12 @@ const Avatar: React.FC<AvatarProps> = ({ data, onClick }) => {
         </div>
       )}
 
-      {/* Dropdown with remaining names */}
       {isDropdownVisible && (
         <div className="tw-absolute tw-top-10 tw-bg-white tw-border tw-border-gray-300 tw-rounded-md tw-shadow-md tw-py-2 tw-px-4 tw-left-[107px] tw-h-[175px] tw-overflow-auto tw-text-[14px] tw-w-max">
           {data.slice(4).map((name, idx) => (
             <div
               key={idx}
-              onClick={() => onClick(name)}
+              onClick={() => handleNameClick(name)}
               className="tw-py-1 tw-cursor-pointer tw-hover:bg-gray-100"
             >
               {name}
@@ -42,7 +46,7 @@ const Avatar: React.FC<AvatarProps> = ({ data, onClick }) => {
         <div
           key={index}
           onClick={() => onClick(item)}
-          className={`tw-absolute tw-w-10 tw-h-10 tw-rounded-full tw-bg-[#B1E2E2] tw-border-[3px] tw-border-white tw-flex tw-items-center tw-justify-center tw-text-[#34A2B1] tw-font-bold tw-cursor-pointer`}
+          className="tw-absolute tw-w-10 tw-h-10 tw-rounded-full tw-bg-[#B1E2E2] tw-border-[3px] tw-border-white tw-flex tw-items-center tw-justify-center tw-text-[#34A2B1] tw-font-bold tw-cursor-pointer"
           style={{ left: `${(4 - index) * 1.3}rem` }}
         >
           {getInitials(item)}
