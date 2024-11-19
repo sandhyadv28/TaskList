@@ -3,9 +3,10 @@ import React, { useState } from "react";
 interface AvatarProps {
   data: string[];
   onClick: (item: string) => void;
+  placeholder: string;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ data, onClick }) => {
+const Avatar: React.FC<AvatarProps> = ({ data, onClick, placeholder }) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const handleToggleDropdown = () => {
@@ -29,16 +30,24 @@ const Avatar: React.FC<AvatarProps> = ({ data, onClick }) => {
       )}
 
       {isDropdownVisible && (
-        <div className="tw-absolute tw-top-10 tw-bg-white tw-border tw-border-gray-300 tw-rounded-md tw-shadow-md tw-py-2 tw-px-4 tw-left-[107px] tw-h-[175px] tw-overflow-auto tw-text-[14px] tw-w-max">
-          {data.slice(4).map((name, idx) => (
-            <div
-              key={idx}
-              onClick={() => handleNameClick(name)}
-              className="tw-py-1 tw-cursor-pointer tw-hover:bg-gray-100"
-            >
-              {name}
-            </div>
-          ))}
+        <div className="tw-absolute tw-top-10 tw-bg-white tw-left-[107px]">
+          <input
+            type="text"
+            placeholder={placeholder}
+            className="tw-py-1 tw-px-2 tw-border tw-border-gray-300 tw-rounded tw-w-[8rem] tw-text-xs tw-outline-none"
+          />
+          <div className="tw-border tw-border-gray-300 tw-rounded-md tw-shadow-md tw-py-2 tw-px-4 tw-h-[175px] tw-mt-0.5 tw-overflow-auto tw-text-[14px] tw-w-max">
+
+            {data.slice(4).map((name, idx) => (
+              <div
+                key={idx}
+                onClick={() => handleNameClick(name)}
+                className="tw-py-1 tw-cursor-pointer tw-hover:bg-gray-100"
+              >
+                {name}
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

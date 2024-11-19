@@ -358,8 +358,9 @@ const Table: React.FC = () => {
 
         <Avatar
           data={extractAssignees(sortedData)}
-          onClick={handleAvatarClick}
-        />
+          onClick={handleAvatarClick} 
+          placeholder={"Search for Assignees"}        
+          />
 
         <div className="tw-ml-[16rem] tw-flex tw-items-center">
           <h1 className="tw-mr-2">Group By:</h1>
