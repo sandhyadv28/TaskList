@@ -57,6 +57,14 @@ const Table: React.FC = () => {
     "Creator",
   ]);
 
+
+  const [groupedColumns] = useState([
+    "Task Type",
+    "Patient name",
+    "Severity",
+    "Hospital-unit"
+  ]);
+
   const [sortedAndGroupedData, setSortedAndGroupedData] = useState({} as any);
   const [sortedData, setSortedData] = useState<TableRow[]>(TableData);
   const [isTaskTypeSorted, setIsTaskTypeSorted] = useState(false);
@@ -356,7 +364,7 @@ const Table: React.FC = () => {
         <div className="tw-ml-[16rem] tw-flex tw-items-center">
           <h1 className="tw-mr-2">Group By:</h1>
           <Dropdown
-            options={selectedColumns}
+            options={groupedColumns}
             selectedValue={groupedByTaskType}
             onChange={handleGroupByTaskType}
           />
